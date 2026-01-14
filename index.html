@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forgive Me Shanvi 💕</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+
+    body{
+      font-family:"Quicksand",sans-serif;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(255,77,136,.35), transparent 45%),
+        radial-gradient(circle at 85% 25%, rgba(255,200,87,.25), transparent 40%),
+        radial-gradient(circle at 50% 85%, rgba(255,0,110,.20), transparent 45%),
+        linear-gradient(135deg, #1b0026 0%, #cbb4d4 100%);
+    }
+
+    /* floating emojis bg */
+    .floating-emojis{position:fixed;inset:0;pointer-events:none;z-index:1;}
+    .float{
+      position:absolute; opacity:.55; font-size:2.2em;
+      filter: drop-shadow(0 8px 18px rgba(255,77,136,.45));
+      animation: floatUp 10s infinite ease-in, sway 5s infinite ease-in-out;
+    }
+    @keyframes floatUp{
+      0%{transform:translateY(110vh) rotate(0deg);opacity:0;}
+      12%{opacity:.55;}
+      88%{opacity:.55;}
+      100%{transform:translateY(-120vh) rotate(540deg);opacity:0;}
+    }
+    @keyframes sway{0%,100%{margin-left:0;}50%{margin-left:60px;}}
+
+    /* card */
+    .card{
+      position:relative; z-index:10;
+      width:min(600px, 92vw);
+      padding:50px 30px;
+      border-radius:36px;
+      text-align:center;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.22);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 30px 120px rgba(0,0,0,.40);
+      overflow:hidden;
+      animation: pop .9s cubic-bezier(.34,1.56,.64,1);
+    }
+    .card::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(circle at 20% 25%, rgba(255,255,255,.16), transparent 40%),
+        radial-gradient(circle at 90% 20%, rgba(255,255,255,.12), transparent 35%),
+        radial-gradient(circle at 50% 90%, rgba(255,77,136,.16), transparent 45%);
+      pointer-events:none;
+    }
+    @keyframes pop{from{opacity:0;transform:scale(.8) translateY(35px);}to{opacity:1;transform:scale(1) translateY(0);}}
+
+    h1{
+      font-family:"Allura", cursive;
+      color:#fff;
+      font-size:clamp(3rem, 6vw, 4.8rem);
+      text-shadow: 0 18px 70px rgba(0,0,0,.40);
+      margin-bottom:6px;
+      position:relative; z-index:2;
+    }
+
+    .heart{
+      font-size:86px;
+      filter: drop-shadow(0 0 34px rgba(255,77,136,.70));
+      animation: beat 1.05s infinite ease-in-out;
+      position:relative; z-index:2;
+    }
+    @keyframes beat{
+      0%,100%{transform:scale(1);}
+      25%{transform:scale(1.24) rotate(4deg);}
+      50%{transform:scale(1) rotate(-4deg);}
+      75%{transform:scale(1.1) rotate(2deg);}
+    }
+
+    /* highlighted subtitle */
+    .subtitle-wrap{ margin: 12px auto 0; width: fit-content; position:relative; z-index:2; }
+    .subtitle{
+      font-size:1.18rem;
+      font-weight:800;
+      color:#fff;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.22);
+      box-shadow: 0 16px 50px rgba(0,0,0,.22);
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    .subtitle.highlight{
+      background: rgba(255, 0, 110, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.30);
+      box-shadow:
+        0 18px 65px rgba(255, 77, 136, 0.35),
+        0 0 40px rgba(255, 77, 136, 0.35);
+      animation: shakeGlow .55s ease;
+      transform: scale(1.03);
+    }
+    @keyframes shakeGlow{
+      0%{transform:scale(1) translateX(0);}
+      25%{transform:scale(1.03) translateX(-4px);}
+      50%{transform:scale(1.05) translateX(4px);}
+      75%{transform:scale(1.03) translateX(-2px);}
+      100%{transform:scale(1.03) translateX(0);}
+    }
+
+    .line{
+      margin-top:16px;
+      color:rgba(255,255,255,.90);
+      line-height:1.85;
+      font-weight:700;
+      font-size:1.05rem;
+      position:relative; z-index:2;
+    }
+
+    /* ✅ Button group => first time side-by-side */
+    .buttons{
+      margin-top:30px;
+      display:flex;
+      justify-content:center;
+      gap:16px;
+      flex-wrap:wrap;
+      position:relative;
+      z-index:2;
+    }
+
+    .btn{
+      border:none;
+      cursor:pointer;
+      font-weight:900;
+      letter-spacing:.6px;
+      border-radius:999px;
+      padding:14px 38px;
+      font-size:1rem;
+      text-transform:uppercase;
+      user-select:none;
+      min-width:170px;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .btn-yes{
+      background: linear-gradient(135deg, #ff4d88, #ff006e);
+      color:#fff;
+      box-shadow: 0 20px 60px rgba(255,77,136,.40);
+    }
+    .btn-yes:hover{
+      transform: translateY(-4px);
+      box-shadow:0 26px 80px rgba(255,77,136,.60);
+    }
+
+    /* ✅ No button (starts next to Yes) */
+    .btn-no{
+      background: linear-gradient(135deg, #ffc857, #ff4d88);
+      color:#fff;
+      box-shadow: 0 18px 55px rgba(255,200,87,.35);
+      z-index:999999;
+    }
+
+    /* flip */
+    .flipCrazy{ animation: flipCrazy .65s cubic-bezier(.34,1.56,.64,1); }
+    @keyframes flipCrazy{
+      0%   { transform: rotateY(0deg) scale(1); }
+      30%  { transform: rotateY(180deg) scale(1.08); }
+      60%  { transform: rotateY(360deg) scale(1.12); }
+      100% { transform: rotateY(540deg) scale(1); }
+    }
+
+    /* emoji rain */
+    .emoji{
+      position:fixed;
+      font-size:2.1em;
+      pointer-events:none;
+      z-index:50;
+      animation: rain 3.2s ease-in forwards;
+      filter: drop-shadow(0 0 18px rgba(255,77,136,.65));
+    }
+    @keyframes rain{
+      0%{transform:translateY(-120px) rotate(0deg);opacity:1;}
+      100%{transform:translateY(110vh) rotate(720deg);opacity:0;}
+    }
+
+    .success{
+      margin-top:22px;
+      font-size:clamp(1.7rem, 3vw, 2.3rem);
+      font-weight:900;
+      color:#fff;
+      text-shadow: 0 18px 70px rgba(0,0,0,.4);
+      position:relative; z-index:2;
+      animation: pop2 .85s cubic-bezier(.34,1.56,.64,1);
+    }
+    @keyframes pop2{from{transform:scale(.6);opacity:0;}to{transform:scale(1);opacity:1;}}
+
+    @media (max-width:520px){
+      .card{padding:40px 18px;}
+      .btn{width:100%;}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="floating-emojis" id="floatingEmojis"></div>
+
+  <div class="card" id="card">
+    <div class="heart" id="mainHeart">❤️‍🩹</div>
+    <h1>Shanvi, Mujhe Maaf Kar Do 🤗</h1>
+
+    <div class="subtitle-wrap">
+      <div class="subtitle" id="subtitle">Shanvi please 🥺🎀</div>
+    </div>
+
+    <div class="line">
+      🥀 Shanvi tum bahut important ho 💗 <br/>
+      Bas ek baar maan jao ❤️‍🩹 <span style="opacity:.9;">&lt;𝟑</span>
+    </div>
+
+    <!-- ✅ First time: No button exactly next to Yes -->
+    <div class="buttons" id="btnGroup">
+      <button class="btn btn-yes" onclick="yes()">Haan 💗</button>
+      <button class="btn btn-no" id="noBtn" onclick="no()">Nahi 🥺</button>
+    </div>
+  </div>
+
+  <script>
+    let noClickCount = 0;
+    let fullScreenMode = false;
+
+    const EMOJIS = ["🤗","🥺","🥀","❤️‍🩹","🎀","😘","🍄","🦋","🌸","♏️","💗","🫀","❤️‍🩹","<𝟑"];
+
+    const responses = [
+      "Shanvi 🥺 please ❤️‍🩹🎀",
+      "Shanvi 🤗 ek baar soch lo 🥀",
+      "Shanvi 😘 sorry yaar 💗",
+      "Shanvi 🦋 bas ek chance ❤️‍🩹",
+      "Shanvi 🌸 pretty please 🥺🎀",
+      "Shanvi 🍄 maan jao na 💗",
+      "Shanvi ♏️ tum best ho 🦋",
+      "Shanvi 🫀 meri jaan 🥺💗",
+      "Shanvi 🥀 gussa mat karo ❤️‍🩹",
+      "<𝟑 Shanvi please 😘🎀❤️‍🩹"
+    ];
+
+    function randomEmoji(){
+      return EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
+    }
+
+    function createFloatingEmojis(){
+      const container = document.getElementById("floatingEmojis");
+      for(let i=0;i<22;i++){
+        const el = document.createElement("div");
+        el.className="float";
+        el.innerHTML = randomEmoji();
+        el.style.left = Math.random()*100 + "%";
+        el.style.animationDelay = Math.random()*5 + "s";
+        el.style.animationDuration = (8 + Math.random()*6) + "s";
+        container.appendChild(el);
+      }
+    }
+
+    function emojiRain(count=12){
+      for(let i=0;i<count;i++){
+        setTimeout(()=>{
+          const e = document.createElement("div");
+          e.className="emoji";
+          e.innerHTML = randomEmoji();
+          e.style.left = Math.random()*100 + "%";
+          e.style.fontSize = (1.6 + Math.random()*1.6) + "em";
+          e.style.animationDuration = (2.6 + Math.random()*1.6) + "s";
+          document.body.appendChild(e);
+          setTimeout(()=>e.remove(), 4500);
+        }, i*70);
+      }
+    }
+
+    function safeRandomPositionViewport(btn){
+      const rect = btn.getBoundingClientRect();
+      const pad = 14;
+
+      const maxX = Math.max(pad, window.innerWidth  - rect.width  - pad);
+      const maxY = Math.max(pad, window.innerHeight - rect.height - pad);
+
+      const x = Math.floor(Math.random() * (maxX - pad + 1)) + pad;
+      const y = Math.floor(Math.random() * (maxY - pad + 1)) + pad;
+      return {x,y};
+    }
+
+    function highlightSubtitle(){
+      const subtitle = document.getElementById("subtitle");
+      subtitle.classList.add("highlight");
+      setTimeout(()=> subtitle.classList.remove("highlight"), 650);
+    }
+
+    function no(){
+      const noBtn = document.getElementById("noBtn");
+      const subtitle = document.getElementById("subtitle");
+      const heart = document.getElementById("mainHeart");
+
+      // flip always
+      noBtn.classList.add("flipCrazy");
+      setTimeout(()=> noBtn.classList.remove("flipCrazy"), 650);
+
+      // ✅ On FIRST click: make it fullscreen overlay
+      if(!fullScreenMode){
+        fullScreenMode = true;
+        document.body.appendChild(noBtn); // move outside card
+        noBtn.style.position = "fixed";
+        noBtn.style.zIndex = "999999";
+      }
+
+      // ✅ Move anywhere inside screen (viewport-safe)
+      const {x,y} = safeRandomPositionViewport(noBtn);
+      noBtn.style.left = x + "px";
+      noBtn.style.top  = y + "px";
+
+      subtitle.innerHTML = responses[noClickCount % responses.length] + " " + randomEmoji();
+      noClickCount++;
+
+      highlightSubtitle();
+
+      heart.innerHTML = "🥺";
+      setTimeout(()=> heart.innerHTML = "❤️‍🩹", 600);
+
+      emojiRain(14);
+    }
+
+    function yes(){
+      const noBtn = document.getElementById("noBtn");
+      const card = document.getElementById("card");
+      const heart = document.getElementById("mainHeart");
+
+      heart.innerHTML = "💗";
+      noBtn.style.display = "none";
+
+      const msg = document.createElement("div");
+      msg.className = "success";
+      msg.innerHTML = "Shanvi 😘 Thank Youuu 🤗💗🎀 <span style='opacity:.95'>&lt;𝟑</span>";
+      card.appendChild(msg);
+
+      emojiRain(60);
+    }
+
+    createFloatingEmojis();
+  </script>
+</body>
+</html>
